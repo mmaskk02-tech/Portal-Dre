@@ -46,7 +46,7 @@ export default async (request) => {
     const d = body.data || {};
     const required = ["firstName","lastName","city","rg","phone","discordName","discordTag"];
     if (required.some(k => !String(d[k] || "").trim())) return json(400, { error: "Preencha todos os campos obrigatórios." });
-    if (!/^\d{3}-\d{3}$/.test(d.rg) || !/^\d{3}-\d{3}$/.test(d.phone)) return json(400, { error: "RG e telefone devem ter o formato 000-000." });
+    if (!/^\d{6}$/.test(String(d.rg)) || !/^\d{3}-\d{3}$/.test(String(d.phone))) return json(400, { error: "O RG deve ter seis números sem hífen e o telefone deve ter o formato 000-000." });
     if (d.consent !== true) return json(400, { error: "Confirme a declaração antes de enviar." });
     const items = await all();
     if (items.some(x => x.discordId && d.discordId && x.discordId === d.discordId && !["Reprovada"].includes(x.status))) return json(409, { error: "Já existe uma inscrição ativa com este ID do Discord." });

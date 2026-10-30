@@ -11,7 +11,7 @@ header{background:linear-gradient(120deg,#252a25,#3b493d);color:#f8f3e9;padding:
 header img{width:68px;height:68px;object-fit:contain;border-radius:50%;background:#1d211d}
 .brand{font-size:12px;letter-spacing:.19em;color:#d8c7a5;text-transform:uppercase}.brand strong{display:block;color:#fff;font-size:20px;letter-spacing:.08em}
 nav{margin-left:auto;font-size:12px;color:#ded5c4;letter-spacing:.12em}
-.hero{min-height:320px;padding:64px 7vw 56px;background:linear-gradient(90deg,rgba(25,30,26,.91),rgba(25,30,26,.55)),url('assets/referencia-tatica.jpg') center/cover;color:#fff;display:flex;align-items:center}
+.hero{min-height:320px;padding:64px 7vw 56px;background:linear-gradient(90deg,rgba(25,30,26,.91),rgba(25,30,26,.55)),url('assets/cronograma-novo.png') center/cover;color:#fff;display:flex;align-items:center}
 .hero-inner{max-width:850px}.eyebrow{color:#d9c49a;letter-spacing:.2em;font-size:11px;font-weight:700}.hero h1{font:600 clamp(32px,5vw,54px)/1.08 Georgia,serif;margin:14px 0}.hero p{max-width:620px;color:#e5e1d7}.tag{display:inline-block;border:1px solid #b69b68;padding:7px 12px;color:#ead9b6;font-size:11px;letter-spacing:.12em;margin-top:10px}
 main{max-width:1080px;margin:38px auto;padding:0 20px;display:grid;grid-template-columns:1fr 310px;gap:24px}
 .card{background:#f8f5ee;border:1px solid var(--line);box-shadow:0 12px 35px #453a2510;border-radius:8px;padding:28px}
@@ -38,7 +38,7 @@ footer{text-align:center;padding:28px 18px;color:#777467;font-size:11px;letter-s
 <div class="field"><label for="firstName">Nome do personagem *</label><input id="firstName" name="firstName" maxlength="40" required autocomplete="off" placeholder="Nome"></div>
 <div class="field"><label for="lastName">Sobrenome do personagem *</label><input id="lastName" name="lastName" maxlength="40" required autocomplete="off" placeholder="Sobrenome"></div>
 <div class="field"><label for="city">Cidade *</label><input id="city" name="city" value="Nova Capital" required maxlength="40"></div>
-<div class="field"><label for="rg">RG do personagem (000-000) *</label><input id="rg" name="rg" inputmode="numeric" maxlength="7" required placeholder="000-000"><span class="hint">Seis números, com hífen no meio.</span></div>
+<div class="field"><label for="rg">RG do personagem (somente números) *</label><input id="rg" name="rg" inputmode="numeric" maxlength="6" pattern="[0-9]{6}" required placeholder="000000"><span class="hint">Informe os seis números, sem hífen.</span></div>
 <div class="field"><label for="phone">Telefone do personagem *</label><input id="phone" name="phone" inputmode="numeric" maxlength="12" required placeholder="000-000"><span class="hint">Informe o número fictício usado no jogo.</span></div>
 </div>
 <div class="section">02 / IDENTIFICAÇÃO NO DISCORD</div>
@@ -56,10 +56,11 @@ footer{text-align:center;padding:28px 18px;color:#777467;font-size:11px;letter-s
 <script>
 const form=document.querySelector('#form'),notice=document.querySelector('#notice'),submit=document.querySelector('#submit');
 const maskSix=(v)=>{let d=v.replace(/\D/g,'').slice(0,6);return d.length>3?d.slice(0,3)+'-'+d.slice(3):d};
-['rg','phone'].forEach(id=>document.getElementById(id).addEventListener('input',e=>e.target.value=maskSix(e.target.value)));
+document.getElementById('rg').addEventListener('input',e=>e.target.value=e.target.value.replace(/\D/g,'').slice(0,6));
+document.getElementById('phone').addEventListener('input',e=>e.target.value=maskSix(e.target.value));
 form.addEventListener('submit',async e=>{e.preventDefault();notice.className='notice';notice.textContent='';if(!form.reportValidity())return;
 const data=Object.fromEntries(new FormData(form).entries());data.consent=true;
-if(!/^\d{3}-\d{3}$/.test(data.rg)||!/^\d{3}-\d{3}$/.test(data.phone)){notice.className='notice error';notice.textContent='Confira o formato: são três números, hífen e mais três números.';return}
+if(!/^\d{6}$/.test(data.rg)||!/^\d{3}-\d{3}$/.test(data.phone)){notice.className='notice error';notice.textContent='O RG deve ter seis números sem hífen; o telefone deve ter três números, hífen e mais três números.';return}
 submit.disabled=true;submit.textContent='ENVIANDO…';
 try{const r=await fetch('/.netlify/functions/api',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({action:'register',data})});const j=await r.json();if(!r.ok)throw new Error(j.error||'Não foi possível enviar.');form.reset();document.querySelector('#city').value='Nova Capital';notice.className='notice success';notice.textContent='Inscrição enviada! Protocolo: '+j.id+'. Seu status inicial é Pendente.'}
 catch(err){notice.className='notice error';notice.textContent=err.message||'Erro ao enviar. Tente novamente.'}
