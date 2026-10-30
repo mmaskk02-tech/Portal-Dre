@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#d9c8a6">
+<title>Inscrições | DRE — Nova Capital RP</title>
+<style>
+:root{--sand:#d9c8a6;--sand2:#eee5d3;--ink:#24251f;--olive:#354438;--gold:#a88951;--muted:#777467;--line:#d8cfbd}
+*{box-sizing:border-box}body{margin:0;background:#e9e1d2;color:var(--ink);font:15px/1.55 Inter,system-ui,Segoe UI,Arial,sans-serif}
+header{background:linear-gradient(120deg,#252a25,#3b493d);color:#f8f3e9;padding:18px max(5vw,22px);display:flex;align-items:center;gap:18px;border-bottom:4px solid var(--gold)}
+header img{width:68px;height:68px;object-fit:contain;border-radius:50%;background:#1d211d}
+.brand{font-size:12px;letter-spacing:.19em;color:#d8c7a5;text-transform:uppercase}.brand strong{display:block;color:#fff;font-size:20px;letter-spacing:.08em}
+nav{margin-left:auto;font-size:12px;color:#ded5c4;letter-spacing:.12em}
+.hero{min-height:320px;padding:64px 7vw 56px;background:linear-gradient(90deg,rgba(25,30,26,.91),rgba(25,30,26,.55)),url('assets/referencia-tatica.jpg') center/cover;color:#fff;display:flex;align-items:center}
+.hero-inner{max-width:850px}.eyebrow{color:#d9c49a;letter-spacing:.2em;font-size:11px;font-weight:700}.hero h1{font:600 clamp(32px,5vw,54px)/1.08 Georgia,serif;margin:14px 0}.hero p{max-width:620px;color:#e5e1d7}.tag{display:inline-block;border:1px solid #b69b68;padding:7px 12px;color:#ead9b6;font-size:11px;letter-spacing:.12em;margin-top:10px}
+main{max-width:1080px;margin:38px auto;padding:0 20px;display:grid;grid-template-columns:1fr 310px;gap:24px}
+.card{background:#f8f5ee;border:1px solid var(--line);box-shadow:0 12px 35px #453a2510;border-radius:8px;padding:28px}
+.card h2{font:600 25px Georgia,serif;margin:0 0 5px}.sub{color:var(--muted);font-size:13px;margin:0 0 24px}
+.section{font-size:11px;letter-spacing:.17em;color:#74664b;font-weight:800;border-bottom:1px solid var(--line);padding:16px 0 8px;margin:8px 0 14px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.field{display:flex;flex-direction:column;gap:6px}.field.full{grid-column:1/-1}label{font-size:12px;font-weight:700;color:#45463e}input{width:100%;border:1px solid #d5cbb8;background:#fffdf8;padding:12px 13px;border-radius:5px;font:inherit;outline:none}input:focus{border-color:#8c774e;box-shadow:0 0 0 3px #a8895122}.hint{font-size:11px;color:#888273}
+.check{display:flex;gap:10px;align-items:flex-start;font-size:12px;color:#666;margin:18px 0}.check input{width:auto;margin-top:4px}
+button{border:0;border-radius:5px;background:var(--olive);color:#fff;padding:14px 20px;font-weight:800;letter-spacing:.09em;cursor:pointer;width:100%;transition:.2s}button:hover{background:#26352a;transform:translateY(-1px)}button:disabled{opacity:.55;cursor:wait}
+aside .card{position:sticky;top:20px;padding:22px}aside img{width:100%;max-width:160px;display:block;margin:0 auto 15px;object-fit:contain}aside h3{font:600 19px Georgia,serif;text-align:center;margin:8px 0}aside p{font-size:12px;color:#777467}.rule{border-top:1px solid var(--line);margin:16px 0;padding-top:12px}
+.notice{display:none;margin-top:14px;padding:12px;border-radius:5px;font-size:13px}.success{display:block;background:#e5efe5;color:#294d31}.error{display:block;background:#f5e6e1;color:#7b3326}
+footer{text-align:center;padding:28px 18px;color:#777467;font-size:11px;letter-spacing:.04em}
+.admin-link{display:inline-block;color:#796a4e;text-decoration:none;font-size:11px;margin-top:16px}.admin-link:hover{text-decoration:underline}
+@media(max-width:820px){main{grid-template-columns:1fr}aside .card{position:static}.hero{min-height:270px;padding:45px 7vw}}@media(max-width:540px){.grid{grid-template-columns:1fr}.field.full{grid-column:auto}header{padding:14px 18px}nav{display:none}.card{padding:20px}}
+</style>
+</head>
+<body>
+<header><img src="assets/dre-logo.png" alt="Emblema DRE — projeto RP"><div class="brand">Nova Capital RP<strong>DRE · Processo seletivo</strong></div><nav>PORTAL DE INSCRIÇÕES</nav></header>
+<section class="hero"><div class="hero-inner"><div class="eyebrow">DELEGACIA DE REPRESSÃO A ENTORPECENTES · RP</div><h1>Processo seletivo<br>de novos integrantes</h1><p>Preencha sua ficha de inscrição com atenção. As informações serão encaminhadas à administração da DRE para análise.</p><span class="tag">INSCRIÇÕES · NOVA CAPITAL</span></div></section>
+<main>
+<section class="card"><h2>Ficha de inscrição</h2><p class="sub">Todos os campos marcados são obrigatórios. Utilize exclusivamente dados fictícios do seu personagem.</p>
+<form id="form">
+<div class="section">01 / IDENTIFICAÇÃO DO PERSONAGEM</div>
+<div class="grid">
+<div class="field"><label for="firstName">Nome do personagem *</label><input id="firstName" name="firstName" maxlength="40" required autocomplete="off" placeholder="Nome"></div>
+<div class="field"><label for="lastName">Sobrenome do personagem *</label><input id="lastName" name="lastName" maxlength="40" required autocomplete="off" placeholder="Sobrenome"></div>
+<div class="field"><label for="city">Cidade *</label><input id="city" name="city" value="Nova Capital" required maxlength="40"></div>
+<div class="field"><label for="rg">RG do personagem (000-000) *</label><input id="rg" name="rg" inputmode="numeric" maxlength="7" required placeholder="000-000"><span class="hint">Seis números, com hífen no meio.</span></div>
+<div class="field"><label for="phone">Telefone do personagem *</label><input id="phone" name="phone" inputmode="numeric" maxlength="12" required placeholder="000-000"><span class="hint">Informe o número fictício usado no jogo.</span></div>
+</div>
+<div class="section">02 / IDENTIFICAÇÃO NO DISCORD</div>
+<div class="grid">
+<div class="field"><label for="discordName">Nome no Discord *</label><input id="discordName" name="discordName" maxlength="60" required placeholder="Nome exibido"></div>
+<div class="field"><label for="discordTag">@ / usuário do Discord *</label><input id="discordTag" name="discordTag" maxlength="80" required placeholder="@usuario"></div>
+<div class="field full"><label for="discordId">ID do Discord (opcional, recomendado)</label><input id="discordId" name="discordId" inputmode="numeric" maxlength="22" placeholder="Ex.: 123456789012345678"><span class="hint">Ative o Modo Desenvolvedor no Discord para copiar seu ID. Ele ajuda a identificar você mesmo se mudar o nome.</span></div>
+</div>
+<label class="check"><input type="checkbox" id="consent" required><span>Confirmo que os dados informados são fictícios e pertencem ao meu personagem no servidor RP. Autorizo seu uso para administrar este processo seletivo.</span></label>
+<button id="submit" type="submit">ENVIAR INSCRIÇÃO</button><div id="notice" class="notice" role="status"></div>
+</form></section>
+<aside><div class="card"><img src="assets/dre-logo.png" alt="Emblema DRE"><h3>DRE · Nova Capital</h3><p style="text-align:center">Disciplina · Comunicação · Responsabilidade</p><div class="rule"><strong>Como funciona?</strong><p>Após o envio, sua inscrição ficará com status <b>Pendente</b>. A equipe responsável poderá colocá-la <b>Em análise</b> ou <b>Aceitar</b>.</p></div><div class="rule"><strong>Importante</strong><p>Este portal é uma ferramenta de comunidade para Roleplay. Não é um serviço oficial da Polícia Federal. Não informe documentos, telefones ou dados pessoais reais.</p></div><a class="admin-link" href="admin.html">Acesso administrativo →</a></div></aside>
+</main>
+<footer>PORTAL DE INSCRIÇÕES DRE · NOVA CAPITAL RP<br>Projeto independente de Roleplay — não representa órgão público.</footer>
+<script>
+const form=document.querySelector('#form'),notice=document.querySelector('#notice'),submit=document.querySelector('#submit');
+const maskSix=(v)=>{let d=v.replace(/\D/g,'').slice(0,6);return d.length>3?d.slice(0,3)+'-'+d.slice(3):d};
+['rg','phone'].forEach(id=>document.getElementById(id).addEventListener('input',e=>e.target.value=maskSix(e.target.value)));
+form.addEventListener('submit',async e=>{e.preventDefault();notice.className='notice';notice.textContent='';if(!form.reportValidity())return;
+const data=Object.fromEntries(new FormData(form).entries());data.consent=true;
+if(!/^\d{3}-\d{3}$/.test(data.rg)||!/^\d{3}-\d{3}$/.test(data.phone)){notice.className='notice error';notice.textContent='Confira o formato: são três números, hífen e mais três números.';return}
+submit.disabled=true;submit.textContent='ENVIANDO…';
+try{const r=await fetch('/.netlify/functions/api',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({action:'register',data})});const j=await r.json();if(!r.ok)throw new Error(j.error||'Não foi possível enviar.');form.reset();document.querySelector('#city').value='Nova Capital';notice.className='notice success';notice.textContent='Inscrição enviada! Protocolo: '+j.id+'. Seu status inicial é Pendente.'}
+catch(err){notice.className='notice error';notice.textContent=err.message||'Erro ao enviar. Tente novamente.'}
+finally{submit.disabled=false;submit.textContent='ENVIAR INSCRIÇÃO'}
+});
+</script>
+</body></html>
