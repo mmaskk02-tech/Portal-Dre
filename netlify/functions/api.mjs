@@ -11,7 +11,7 @@ function validToken(event) {
   const authorization = event.headers?.get
     ? event.headers.get("authorization")
     : event.headers?.authorization;
-  const token = (authorization || "").replace(/^Bearer\\s+/i, "");
+  const token = (authorization || "").replace(/^Bearer\s+/i, "");
   const [payload, signature] = token.split(".");
   if (!payload || !signature || !secret()) return false;
   const expected = sign(payload);
