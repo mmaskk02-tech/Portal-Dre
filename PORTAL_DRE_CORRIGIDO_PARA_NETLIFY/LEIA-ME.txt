@@ -1,0 +1,27 @@
+# Portal de inscrições DRE — Nova Capital RP
+
+Site estático + Netlify Function + Netlify Blobs. O banco de inscrições é persistente no Netlify; não é necessário configurar Supabase.
+
+## Publicar no Netlify
+1. Extraia o ZIP em uma pasta.
+2. Acesse Netlify e escolha **Add new site → Deploy manually** (ou conecte um repositório Git).
+3. Envie a pasta do projeto, contendo `index.html`, `admin.html`, `netlify.toml`, `package.json` e `netlify/`.
+4. Em **Site configuration → Environment variables**, configure:
+   - `ADMIN_PASSWORD`: crie uma senha administrativa forte e exclusiva. Não use a senha de exemplo enviada na conversa.
+   - `ADMIN_SESSION_SECRET`: uma chave aleatória longa (opcional, mas recomendado; se ausente, a senha será usada para assinar sessões).
+   - `DISCORD_WEBHOOK_URL`: URL de um webhook de um canal privado de avisos da equipe (opcional).
+5. Faça um novo deploy após configurar as variáveis.
+6. Página pública: URL do site. Painel: `https://SEU-SITE.netlify.app/admin.html`.
+
+## Aviso Discord
+Crie um webhook nas configurações do canal privado que deve receber os avisos e guarde a URL apenas na variável `DISCORD_WEBHOOK_URL` do Netlify. Nunca coloque a URL do webhook no HTML ou compartilhe publicamente. Quando uma inscrição muda para **Aceita**, a função envia uma mensagem ao canal. Se o candidato informou ID numérico do Discord, o aviso tenta mencioná-lo.
+
+## Segurança e limites
+- A senha administrativa não está gravada no código. Configure-a no painel do Netlify.
+- A sessão administrativa expira em 8 horas.
+- Os dados ficam no Netlify Blobs e são consultados somente pela função autenticada.
+- O painel lista inscrições recebidas; não registra visitantes anônimos que apenas abriram a página.
+- Não colete RG, telefone ou outros dados pessoais reais. Use somente identificadores fictícios do personagem RP.
+- O site é um projeto comunitário de Roleplay e não representa a Polícia Federal nem qualquer órgão público.
+- O webhook é opcional. Sem ele, o painel continua funcionando, mas não envia avisos externos.
+- Para produção com grande volume, recomenda-se adicionar limitação de tentativas no login, CAPTCHA e política de retenção/backup.

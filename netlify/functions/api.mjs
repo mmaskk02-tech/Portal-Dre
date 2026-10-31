@@ -8,7 +8,10 @@ const secret = () => process.env.ADMIN_SESSION_SECRET || process.env.ADMIN_PASSW
 function sign(value) { return crypto.createHmac("sha256", secret()).update(value).digest("hex"); }
 function makeToken() { const payload = Buffer.from(JSON.stringify({ exp: Date.now() + 8 * 60 * 60 * 1000 })).toString("base64url"); return payload + "." + sign(payload); }
 function validToken(event) {
-  const token = (event.headers.authorization || "").replace(/^Bearer\s+/i, "");
+  const authorization = event.headers?.get
+    ? event.headers.get("authorization")
+    : event.headers?.authorization;
+  const token = (authorization || "").replace(/^Bearer\\s+/i, "");
   const [payload, signature] = token.split(".");
   if (!payload || !signature || !secret()) return false;
   const expected = sign(payload);
